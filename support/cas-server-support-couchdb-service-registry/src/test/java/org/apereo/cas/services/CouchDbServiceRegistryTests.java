@@ -32,9 +32,8 @@ import java.util.Collections;
     CouchDbServiceRegistryConfiguration.class
 },
     properties = {
-        "org.ektorp.support.AutoUpdateViewOnChange=true",
-        "cas.serviceRegistry.couchDb.username=",
-        "cas.serviceRegistry.couchDb.password="
+        "cas.serviceRegistry.couchDb.username=cas",
+        "cas.serviceRegistry.couchDb.password=password"
     })
 @ConditionalIgnore(condition = RunningContinuousIntegrationCondition.class)
 @Category(CouchDbCategory.class)

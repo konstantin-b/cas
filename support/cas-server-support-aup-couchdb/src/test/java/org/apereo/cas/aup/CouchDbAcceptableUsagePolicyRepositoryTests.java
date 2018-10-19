@@ -24,7 +24,12 @@ import org.springframework.test.context.TestPropertySource;
  * @since 6.0.0
  */
 @Import({CasCouchDbCoreConfiguration.class, CasAcceptableUsagePolicyCouchDbConfiguration.class})
-@TestPropertySource(properties = "cas.acceptableUsagePolicy.couchDb.asynchronous=false")
+@TestPropertySource(properties = {
+    "cas.acceptableUsagePolicy.couchDb.asynchronous=false",
+    "cas.acceptableUsagePolicy.couchDb.username=cas",
+    "cas.acceptableUsagePolicy.couchdb.password=password"
+
+})
 @Category(CouchDbCategory.class)
 @ConditionalIgnore(condition = RunningContinuousIntegrationCondition.class)
 @Getter

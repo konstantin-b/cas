@@ -15,11 +15,18 @@ else
     exit $retVal
 fi
 
-curl -X PUT http://127.0.0.1:5984/_node/couchdb@127.0.0.1/_config/admins/cas -d '"password"'
+echo "Waiting for CouchDb server to come online..."
+sleep 10
+until $(curl -X PUT http://127.0.0.1:5984/_node/couchdb@127.0.0.1/_config/admins/cas -d '"password"' --fail); do
+    printf '.'
+    sleep 1
+done
+
+test=$(curl --fail http://127.0.0.1/_membership)
 retVal=$?
-if [ $retVal == 0 ]; then
-    echo "CouchDb admin initialized."
-else
-    echo "CouchDb admin failed to initialize."
+#if [ $retVal == 0 ]; then
+#    echo "CouchDb admin initialized."
+#else
+    echo "CouchDb admin failed to initialize. ${test}"
     exit $retVal
-fi
+#fi

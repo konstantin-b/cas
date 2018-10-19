@@ -70,8 +70,9 @@ import java.util.Collection;
     RefreshAutoConfiguration.class
 },
     properties = {
-    "org.ektorp.support.AutoUpdateViewOnChange=true", "cas.ticket.registry.couchDb.username=", "cas.ticket.registry.couchDb.password="
-})
+        "cas.ticket.registry.couchDb.username=cas",
+        "cas.ticket.registry.couchDb.password=password"
+    })
 @Category(CouchDbCategory.class)
 public class CouchDbTicketRegistryTests extends BaseSpringRunnableTicketRegistryTests {
 

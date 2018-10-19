@@ -1,5 +1,7 @@
 package org.apereo.cas.support.saml.services.idp.metadata;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,31 +37,37 @@ public class SamlIdPMetadataDocument {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "id", columnDefinition = "BIGINT")
+    @JsonProperty
     private long id = -1;
 
     @Lob
     @Type(type = "org.hibernate.type.StringNVarcharType")
     @Column(name = "metadata", length = 8_000)
+    @JsonProperty
     private String metadata;
 
     @Lob
     @Type(type = "org.hibernate.type.StringNVarcharType")
     @Column(name = "signingCertificate", length = 3_000)
+    @JsonProperty
     private String signingCertificate;
 
     @Lob
     @Type(type = "org.hibernate.type.StringNVarcharType")
     @Column(name = "signingKey", length = 3_000)
+    @JsonProperty
     private String signingKey;
 
     @Lob
     @Type(type = "org.hibernate.type.StringNVarcharType")
     @Column(name = "encryptionCertificate", length = 3_000)
+    @JsonProperty
     private String encryptionCertificate;
 
     @Lob
     @Type(type = "org.hibernate.type.StringNVarcharType")
     @Column(name = "encryptionKey", length = 3_000)
+    @JsonProperty
     private String encryptionKey;
 
     public SamlIdPMetadataDocument() {
@@ -71,6 +79,7 @@ public class SamlIdPMetadataDocument {
      *
      * @return true/false
      */
+    @JsonIgnore
     public boolean isValid() {
         return StringUtils.isNotBlank(getMetadata())
             && StringUtils.isNotBlank(getSigningCertificate())
